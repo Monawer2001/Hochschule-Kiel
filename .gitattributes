@@ -1,18 +1,17 @@
-from django.db import models
+# أنشئ مجلد للمشروع
+mkdir hochschulbewerbung
+cd hochschulbewerbung
 
-class Bewerbung(models.Model):
-    VORNAME = models.CharField(max_length=100)
-    NACHNAME = models.CharField(max_length=100)
-    EMAIL = models.EmailField()
-    STUDIENGANG = models.CharField(max_length=100)
-    ABSCHLUSS = models.CharField(max_length=100)
-    SPRACHEN = models.TextField()
-    STATUS = models.CharField(
-        max_length=20,
-        choices=[('neu', 'Neu'), ('bearbeitet', 'Bearbeitet'), ('zugesagt', 'Zugesagt'), ('abgelehnt', 'Abgelehnt')],
-        default='neu'
-    )
-    DATUM = models.DateTimeField(auto_now_add=True)
+# أنشئ بيئة افتراضية
+python -m venv venv
+source venv/bin/activate  # على لينكس/ماك
+venv\Scripts\activate     # على ويندوز
 
-    def __str__(self):
-        return f"{self.VORNAME} {self.NACHNAME} - {self.STUDIENGANG}"
+# ثبت Django
+pip install django
+
+# أنشئ مشروع جديد
+django-admin startproject core .
+
+# أنشئ تطبيق للتقديم
+python manage.py startapp bewerbung
